@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "feedback-wp-client-side-solution",
+    "id": "cfc1eb6a-82ac-4a7f-813a-2aec11af2438",
+    "version": "1.0.0.2",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.21.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "FeedbackWP description"
+      },
+      "longDescription": {
+        "default": "FeedbackWP description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "feedback-wp Feature",
+        "description": "The feature that activates elements of the feedback-wp solution.",
+        "id": "0a9e1574-9c26-4a69-9f24-7dd3647a2991",
+        "version": "1.0.0.2"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/feedback-wp.sppkg"
+  }
+}
