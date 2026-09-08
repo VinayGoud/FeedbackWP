@@ -42,20 +42,17 @@ interface ISPListItemsResponse<T> {
  */
 const TITLE_TRANSLATION_COLUMNS: { [languageKey: string]: string } = {
   es: 'Title_Spanish',
-  de: 'Title_German'
-  // Add each of these back ONE AT A TIME, only after confirming the column
-  // missing columns. Adding all of these before the schema rollout is done
-  // everywhere would break the web part in any environment still missing one.
-  // 'zh-cn': 'Title_Chinese_Simplified',
-  // 'zh-tw': 'Title_Chinese_Traditional',
-  // nl: 'Title_Dutch',
-  // fr: 'Title_French',
-  // it: 'Title_Italian',
-  // ja: 'Title_Japanese',
-  // ko: 'Title_Korean',
-  // pl: 'Title_Polish',
-  // pt: 'Title_Portuguese',
-  // th: 'Title_Thai'
+  de: 'Title_German',
+   'zh-cn': 'Title_Chinese_Simplified',
+   'zh-tw': 'Title_Chinese_Traditional',
+   nl: 'Title_Dutch',
+   fr: 'Title_French',
+   it: 'Title_Italian',
+   ja: 'Title_Japanese',
+   ko: 'Title_Korean',
+   pl: 'Title_Polish',
+   pt: 'Title_Portuguese',
+   th: 'Title_Thai'
 };
 
 interface IContextInfoResponse {
