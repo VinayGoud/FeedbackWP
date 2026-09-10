@@ -1,0 +1,67 @@
+# Phase 1 pipeline for FeedbackWP
+# Purpose: build, bundle, and package the SPFx solution whenever code is
+# merged into main. Produces a downloadable .sppkg as a build artifact.
+# No deployment, no app catalog, no auth - that's Phase 2 and Phase 3.
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+# Node 22.x is required here - SPFx 1.21's toolchain (this project) does
+# not build correctly on other Node versions. Confirmed this the hard way
+# testing locally across 3 machines earlier in this project.
+- task: NodeTool@0
+  displayName: 'Use Node 22.x'
+  inputs:
+    versionSpec: '22.x'
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    command: 'install'
+
+- task: Gulp@0
+  displayName: 'gulp clean'
+  inputs:
+    targets: 'clean'
+
+- task: Gulp@0
+  displayName: 'gulp build'
+  inputs:
+    targets: 'build'
+
+- task: Gulp@0
+  displayName: 'gulp bundle --ship'
+  inputs:
+    targets: 'bundle'
+    arguments: '--ship'
+
+- task: Gulp@0
+  displayName: 'gulp package-solution --ship'
+  inputs:
+    targets: 'package-solution'
+    arguments: '--ship'
+
+# Copies the .sppkg file out of sharepoint/solution/ into the artifact
+# staging directory, so it can be published and downloaded from the
+# pipeline run afterward.
+- task: CopyFiles@2
+  displayName: 'Copy sppkg to artifact staging directory'
+  inputs:
+    SourceFolder: 'sharepoint/solution'
+    Contents: '*.sppkg'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    OverWrite: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish build artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
