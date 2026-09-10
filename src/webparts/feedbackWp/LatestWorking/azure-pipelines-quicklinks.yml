@@ -1,0 +1,61 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- Intranet-22
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node 18.17.1'
+  inputs:
+    versionSpec: '18.17.1'
+
+# Fixed: this now actually installs the project's dependencies from
+# package.json, instead of the previous step which just reinstalled the
+# npm CLI itself and never touched node_modules at all.
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    command: 'install'
+
+- task: Gulp@0
+  displayName: 'gulp build'
+  inputs:
+    targets: build
+    arguments: '--ship'
+
+- task: Gulp@0
+  displayName: 'gulp bundle'
+  inputs:
+    targets: bundle
+    arguments: '--ship'
+
+- task: Gulp@0
+  displayName: 'gulp package-solution'
+  inputs:
+    targets: 'package-solution'
+    arguments: '--ship'
+
+- task: CopyFiles@2
+  displayName: 'Copy sppkg to Artifacts directory'
+  inputs:
+    SourceFolder: sharepoint/solution/
+    Contents: '*.sppkg'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    OverWrite: true
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'temp/deploy/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
