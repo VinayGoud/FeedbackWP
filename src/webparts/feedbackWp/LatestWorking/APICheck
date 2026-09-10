@@ -1,0 +1,15 @@
+fetch('https://navigatordev.ai.3m.com/nav-api/3mgo/chat', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'text/event-stream'
+    // intentionally no Authorization header
+  },
+  body: JSON.stringify({
+    request_id: 'vendor_test123',
+    user_id: 'test@mmm.com',
+    timestamp: new Date().toISOString(),
+    session: 'sess_test123',
+    chat_history: [{ role: 'user', content: 'Hello' }]
+  })
+}).then(r => console.log('status:', r.status));
