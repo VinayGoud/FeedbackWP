@@ -23,23 +23,17 @@ steps:
   inputs:
     command: 'install'
 
-- task: Gulp@0
+- script: |
+    npx gulp build --ship
   displayName: 'gulp build'
-  inputs:
-    targets: build
-    arguments: '--ship'
 
-- task: Gulp@0
+- script: |
+    npx gulp bundle --ship
   displayName: 'gulp bundle'
-  inputs:
-    targets: bundle
-    arguments: '--ship'
 
-- task: Gulp@0
+- script: |
+    npx gulp package-solution --ship
   displayName: 'gulp package-solution'
-  inputs:
-    targets: 'package-solution'
-    arguments: '--ship'
 
 - task: CopyFiles@2
   displayName: 'Copy sppkg to Artifacts directory'
