@@ -1,0 +1,150 @@
+// Append these to the existing AiBanner.module.scss.
+// Keep the current .aiBanner gradient banner / .searchRow / .searchInput /
+// .submitButton rules as-is - these are additive, for the new chat panel only.
+
+.chatPanel {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  max-height: 480px;
+}
+
+.chatPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.messageList {
+  overflow-y: auto;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.userBubble {
+  align-self: flex-end;
+  background: #f2f2f2;
+  border-radius: 12px 12px 2px 12px;
+  padding: 10px 14px;
+  max-width: 80%;
+}
+
+.assistantBubble {
+  align-self: flex-start;
+  background: #fdf1f1; // subtle tint of the banner's red, adjust to match brand
+  border-radius: 12px 12px 12px 2px;
+  padding: 10px 14px;
+  max-width: 85%;
+}
+
+.toolStatus {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  margin-top: 6px;
+}
+
+.errorText {
+  color: #b00020;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.citationsList {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 12px;
+
+  li {
+    margin-bottom: 2px;
+  }
+}
+
+.followupChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.followupChip {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+}
+
+.routingHandoffCard {
+  align-self: flex-start;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  padding: 12px 14px;
+  max-width: 85%;
+}
+
+.routingHandoffActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+
+  a,
+  button {
+    font-size: 13px;
+  }
+}
+
+.bannerError {
+  padding: 8px 16px;
+  background: #fff3f3;
+  color: #b00020;
+  font-size: 13px;
+}
+
+.chatPanelFooter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+.continueInNavigatorButton {
+  white-space: nowrap;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
