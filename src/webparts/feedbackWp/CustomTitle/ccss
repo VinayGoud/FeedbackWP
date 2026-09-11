@@ -1,0 +1,15 @@
+/* 1. Default: hide News grid until news items are rendered */
+div[data-automation-id="gridNewsLayout"] {
+  visibility: hidden;
+}
+
+/* 2. Show grid when actual News items exist */
+div[data-automation-id="gridNewsLayout"]:has(div.ms-NewsItem) {
+  visibility: visible;
+}
+
+/* 3. NEW: hide old grid immediately during SPA navigation */
+body.news-navigation-in-progress
+div[data-automation-id="gridNewsLayout"] {
+  visibility: hidden !important;
+}
